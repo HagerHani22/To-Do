@@ -18,9 +18,10 @@ class CacheHelper {
     required String key,
   }) {
     return sharedPreferences?.get(key);
-  }
+  } 
 
-  static Future<bool?> saveData({
+
+  static Future<bool?> setData({
     required String key,
     required dynamic value,
   }) async {

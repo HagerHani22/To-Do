@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'login.dart';
 
-class homeScreen extends StatelessWidget {
-  const homeScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class homeScreen extends StatelessWidget {
                       builder: (context) => NewLogin(),
                     ));
               },
-              child: Text(
+              child: const Text(
                 'Logout',
                 style: TextStyle(
                     fontSize: 20,
@@ -33,7 +33,7 @@ class homeScreen extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/image/walld.jpg'),
                 fit: BoxFit.cover)),

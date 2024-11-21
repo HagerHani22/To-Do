@@ -13,7 +13,7 @@ class ProjectCubit extends Cubit<ProjectStates> {
 
   bool isPassword = true;
   IconData Icon = Icons.visibility_off;
-  void changepass() {
+  void changePassword() {
     isPassword = !isPassword;
     if (isPassword) {
       Icon = Icons.visibility_off;

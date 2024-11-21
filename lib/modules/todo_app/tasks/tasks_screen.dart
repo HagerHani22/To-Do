@@ -6,7 +6,7 @@ import '../../../layout/todoapp/cubit/states.dart';
 import '../../../shared/components/components.dart';
 
 class TasksScreen extends StatelessWidget {
-  // const TasksScreen({super.key});
+  const TasksScreen({super.key});
 
 
   @override
@@ -14,8 +14,8 @@ class TasksScreen extends StatelessWidget {
     return BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var tasks= AppCubit.get(context).newtasks;
-        return  tasks.length==0?appTasks():ListView.separated(
+        var tasks= AppCubit.get(context).newTasks;
+        return  tasks.isEmpty?appTasks():ListView.separated(
           itemBuilder: (context, index) => buildTaskItem(tasks[index],context),
           separatorBuilder: (context, index) => Container(
             width: double.infinity,
@@ -30,7 +30,7 @@ class TasksScreen extends StatelessWidget {
   }
 }
 Widget appTasks(){
-  return Center(
+  return const Center(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

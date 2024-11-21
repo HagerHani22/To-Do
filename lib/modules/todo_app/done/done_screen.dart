@@ -7,15 +7,15 @@ import '../../../shared/components/components.dart';
 
 
 
-class DonesScreen extends StatelessWidget {
-  const DonesScreen({super.key});
+class DoneScreen extends StatelessWidget {
+  const DoneScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var tasks= AppCubit.get(context).donetasks;
+        var tasks= AppCubit.get(context).doneTasks;
         return tasks.isEmpty?appTasks(): ListView.separated(
           itemBuilder: (context, index) => buildTaskItem(tasks[index],context),
           separatorBuilder: (context, index) => Container(

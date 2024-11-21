@@ -79,7 +79,7 @@ class NewLogin extends StatelessWidget {
                           ispassword: cubit.isPassword,
                           suffix: cubit.Icon,
                           suffixPressed: () {
-                            cubit.changepass();
+                            cubit.changePassword();
                           },
                           validate: (value) {
                             if (value.isEmpty) {

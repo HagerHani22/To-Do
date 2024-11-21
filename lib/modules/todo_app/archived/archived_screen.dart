@@ -13,7 +13,7 @@ class ArchivedScreen extends StatelessWidget {
     return BlocConsumer<AppCubit,AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        var tasks= AppCubit.get(context).archivedtasks;
+        var tasks= AppCubit.get(context).archivedTasks;
         return  tasks.isEmpty?appTasks():ListView.separated(
           itemBuilder: (context, index) => buildTaskItem(tasks[index],context),
           separatorBuilder: (context, index) => Container(

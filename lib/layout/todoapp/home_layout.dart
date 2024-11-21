@@ -7,14 +7,17 @@ import '../../modules/registerproject/login.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
-var scaffoldkey = GlobalKey<ScaffoldState>();
-var formkey = GlobalKey<FormState>();
+var scaffoldKey = GlobalKey<ScaffoldState>();
+var formKey = GlobalKey<FormState>();
 
 var titleController = TextEditingController();
 var timeController = TextEditingController();
 var dateController = TextEditingController();
 
 class HomeLayout extends StatelessWidget {
+  const HomeLayout({super.key});
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) => AppCubit()..createDatabase(),
@@ -27,9 +30,9 @@ class HomeLayout extends StatelessWidget {
         builder: (context, state) {
           AppCubit cubit = AppCubit.get(context);
           return Scaffold(
-            key: scaffoldkey,
+            key: scaffoldKey,
             appBar: AppBar(
-              title: Text(cubit.titles[cubit.currentIndex],style: TextStyle(color: Colors.white),),
+              title: Text(cubit.titles[cubit.currentIndex],style: const TextStyle(color: Colors.white),),
               backgroundColor: Colors.lightBlue,
               actions: [
                 TextButton(
@@ -56,8 +59,8 @@ class HomeLayout extends StatelessWidget {
             floatingActionButton: FloatingActionButton(
               foregroundColor: Colors.white,
                 onPressed: () {
-                  if (cubit.isbottomsheetshown) {
-                    if (formkey.currentState!.validate()) {
+                  if (cubit.isBottomSheetShown) {
+                    if (formKey.currentState!.validate()) {
                       cubit.insertToDatabase(
                         title: titleController.text,
                         data: dateController.text,
@@ -65,12 +68,12 @@ class HomeLayout extends StatelessWidget {
                       );
                     }
                   } else {
-                    scaffoldkey.currentState
+                    scaffoldKey.currentState
                         ?.showBottomSheet(
                           (context) => Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Form(
-                              key: formkey,
+                              key: formKey,
                               child: SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
@@ -165,9 +168,9 @@ class HomeLayout extends StatelessWidget {
                         .closed
                         .then((value) {
                       cubit.changeBottomSheetState(
-                          isshow: false, icon: Icons.edit);
+                          isShow: false, icon: Icons.edit);
                     });
-                      cubit.changeBottomSheetState(isshow: true, icon: Icons.add);
+                      cubit.changeBottomSheetState(isShow: true, icon: Icons.add);
                   }
 
                   // insertToDatabase();
@@ -187,7 +190,7 @@ class HomeLayout extends StatelessWidget {
                   // });
                 },
                 backgroundColor: Colors.lightBlue,
-                child: Icon(cubit.fabicon)),
+                child: Icon(cubit.fabIcon)),
             bottomNavigationBar: BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
                 currentIndex: cubit.currentIndex,

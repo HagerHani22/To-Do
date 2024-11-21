@@ -5,7 +5,7 @@ import 'package:todo_app/modules/registerproject/states.dart';
 import '../../layout/todoapp/home_layout.dart';
 import '../../shared/components/components.dart';
 import 'cubit.dart';
-import 'home.dart';
+
 
 
 class RegisterScreen extends StatelessWidget {
@@ -105,7 +105,7 @@ class RegisterScreen extends StatelessWidget {
                           suffix: cubit.Icon,
                           ispassword: cubit.isPassword,
                           suffixPressed: () {
-                            cubit.changepass();
+                            cubit.changePassword();
                           },
                           validate: (value) {
                             if (value.isEmpty) {
@@ -124,7 +124,7 @@ class RegisterScreen extends StatelessWidget {
                           suffix: cubit.Icon,
                           ispassword: cubit.isPassword,
                           suffixPressed: () {
-                            cubit.changepass();
+                            cubit.changePassword();
                           },
                           validate: (value) {
                             if (value.isEmpty) {

@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqflite/sqflite.dart';
@@ -14,14 +13,14 @@ class AppCubit extends Cubit<AppStates> {
 
   static AppCubit get(context) => BlocProvider.of(context);
 
-  List<Map> newtasks = [];
-  List<Map> donetasks = [];
-  List<Map> archivedtasks = [];
+  List<Map> newTasks = [];
+  List<Map> doneTasks = [];
+  List<Map> archivedTasks = [];
 
   var currentIndex = 0;
   List<Widget> screens = [
     TasksScreen(),
-    const DonesScreen(),
+    const DoneScreen(),
     const ArchivedScreen(),
   ];
   List<String> titles = [
@@ -87,27 +86,27 @@ class AppCubit extends Cubit<AppStates> {
   }
 
  void getDataFromDatabase(database) async {
-   newtasks = [];
-   donetasks = [];
-   archivedtasks = [];
+   newTasks = [];
+   doneTasks = [];
+   archivedTasks = [];
 
    database!.rawQuery('SELECT * FROM tasks').then((value) {
 
        value.forEach((element){
          if(element['status']=='new') {
-           newtasks.add(element);
-         } else if(element['status']=='done')
-           donetasks.add(element);
-         else
-           archivedtasks.add(element);
-       });
+           newTasks.add(element);
+         } else if(element['status']=='done'){
+           doneTasks.add(element);}
+         else {
+           archivedTasks.add(element);
+         }});
        emit(AppGetDatabaseState());
      });
   }
   void updateData({required String status, required int id}) {
     database?.rawUpdate(
       'UPDATE tasks SET status = ? WHERE id = ?',
-      ['$status', id],
+      [status, id],
     ).then((value) {
       getDataFromDatabase(database);
       emit(AppUpdateDatabaseState());
@@ -126,14 +125,14 @@ class AppCubit extends Cubit<AppStates> {
   }
 
 
-  bool isbottomsheetshown = false;
-  IconData fabicon = Icons.edit;
+  bool isBottomSheetShown = false;
+  IconData fabIcon = Icons.edit;
   void changeBottomSheetState({
-    required bool isshow,
+    required bool isShow,
     required IconData icon,
   }) {
-    isbottomsheetshown = isshow;
-    fabicon = icon;
+    isBottomSheetShown = isShow;
+    fabIcon = icon;
     emit(AppChangeBottomSheetState());
   }
 

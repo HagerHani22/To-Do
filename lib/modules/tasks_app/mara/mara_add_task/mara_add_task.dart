@@ -3,13 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:tasks/shared/components/component.dart';
-
 import '../mara_cubit/cubit.dart';
 import '../mara_cubit/states.dart';
-import '../mara_screen.dart';
 
 class MaraAddTasks extends StatefulWidget {
-  MaraAddTasks({super.key});
+  const MaraAddTasks({super.key});
 
   @override
   State<MaraAddTasks> createState() => _AddTasksState();
@@ -26,7 +24,7 @@ class _AddTasksState extends State<MaraAddTasks> {
 
   var deadlineController = TextEditingController();
 
-  var formkey = GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +37,14 @@ class _AddTasksState extends State<MaraAddTasks> {
             backgroundColor: HexColor('#ba4c31'),
             centerTitle: true,
             leading: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back,
                   color: Colors.white,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
                 }),
-            title: Text('Add New Tasks',
+            title: const Text('Add New Tasks',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
@@ -57,15 +55,15 @@ class _AddTasksState extends State<MaraAddTasks> {
             padding: const EdgeInsets.all(12.0),
             child: SingleChildScrollView(
               child: Form(
-                key: formkey,
+                key: formKey,
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Task Title',
                         style: TextStyle(fontSize: 20),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 7,
                       ),
                       defaultFormField(
@@ -86,10 +84,10 @@ class _AddTasksState extends State<MaraAddTasks> {
                           return null;
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
-                      Row(
+                      const Row(
                         children: [
                           Expanded(
                               child: Text(
@@ -103,7 +101,7 @@ class _AddTasksState extends State<MaraAddTasks> {
                           )),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       Row(
@@ -134,7 +132,7 @@ class _AddTasksState extends State<MaraAddTasks> {
                                   });
                                 }),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 16,
                           ),
                           Expanded(
@@ -162,10 +160,10 @@ class _AddTasksState extends State<MaraAddTasks> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
-                      Row(
+                      const Row(
                         children: [
                           Expanded(
                             child: Text(
@@ -183,7 +181,7 @@ class _AddTasksState extends State<MaraAddTasks> {
                           )),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       Row(
@@ -217,7 +215,7 @@ class _AddTasksState extends State<MaraAddTasks> {
                               },
                                 ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 14,
                           ),
                           Expanded(
@@ -243,14 +241,14 @@ class _AddTasksState extends State<MaraAddTasks> {
                                   cubit.dropdownValue = newValue!;
                                 });
                               },
-                              hint: Text('Select Task Type'),
+                              hint: const Text('Select Task Type'),
                               items: <String>['Flutter', 'Web']
                                   .map<DropdownMenuItem<String>>((String value) {
                                 return DropdownMenuItem<String>(
                                   value: value,
                                   child: Text(
                                     value,
-                                    style: TextStyle(fontSize: 20),
+                                    style: const TextStyle(fontSize: 20),
                                   ),
                                 );
                               }).toList(),
@@ -258,14 +256,14 @@ class _AddTasksState extends State<MaraAddTasks> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
-                      Text(
+                      const Text(
                         'Note',
                         style: TextStyle(fontSize: 20),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       defaultFormField(
@@ -287,7 +285,7 @@ class _AddTasksState extends State<MaraAddTasks> {
                         },
 
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       Row(
@@ -300,7 +298,7 @@ class _AddTasksState extends State<MaraAddTasks> {
                                 ),
                                 child: TextButton(
                                     onPressed: () {
-                                      if (formkey.currentState!.validate()) {
+                                      if (formKey.currentState!.validate()) {
                                         cubit.insertToDatabase(
                                           title: titleController.text,
                                           date: dateController.text,
@@ -312,7 +310,7 @@ class _AddTasksState extends State<MaraAddTasks> {
                                         Navigator.pop(context);
                                       }
                                     },
-                                    child: Text(
+                                    child: const Text(
                                       'Save',
                                       style: TextStyle(
                                           fontSize: 16,

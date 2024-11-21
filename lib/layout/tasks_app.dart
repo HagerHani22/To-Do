@@ -10,10 +10,10 @@ import '../modules/tasks_app/login/login.dart';
 import '../modules/tasks_app/profile/profile.dart';
 import '../shared/network/local/cache_helper.dart';
 
-class Tasks_App extends StatelessWidget {
+class TasksApp extends StatelessWidget {
   final UserData? user;
 
-  Tasks_App({Key? key, this.user}) : super(key: key) {}
+  TasksApp({Key? key, this.user}) : super(key: key) {}
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class Tasks_App extends StatelessWidget {
           appBar: AppBar(
             centerTitle: true,
             backgroundColor: HexColor('#ba4c31'),
-            title: Text('Todo List',
+            title: const Text('Todo List',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
@@ -34,7 +34,7 @@ class Tasks_App extends StatelessWidget {
               builder: (context) {
                 return IconButton(
                   onPressed: () => Scaffold.of(context).openDrawer(),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.menu,
                     color: Colors.white,
                   ),
@@ -63,12 +63,11 @@ class Tasks_App extends StatelessWidget {
                   )),
                 ),
                 ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.person,
                   ),
                   title: const Text('Profile'),
                   onTap: () async {
-
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -87,7 +86,7 @@ class Tasks_App extends StatelessWidget {
                 //   },
                 // ),
                 ListTile(
-                  leading: Icon(
+                  leading: const Icon(
                     Icons.exit_to_app,
                   ),
                   title: const Text('Logout'),

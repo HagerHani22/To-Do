@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasks/models/userdata.dart';
-
 import '../../../layout/tasks_app.dart';
 import '../../../shared/components/component.dart';
-import '../../../shared/network/local/cache_helper.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
 
 class RegisterScreen extends StatelessWidget {
-  // const RegisterScreen({super.key});
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var phoneController = TextEditingController();
-  var passwordController = TextEditingController();
-  var confirmpassController = TextEditingController();
+   RegisterScreen({super.key});
+ final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -32,16 +29,16 @@ class RegisterScreen extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: SingleChildScrollView(
                 child: Form(
-                  key: formkey,
+                  key: formKey,
                   child: Column(children: [
-                    Text(
+                    const Text(
                       'Register',
                       style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 35),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     defaultFormField(
@@ -59,7 +56,7 @@ class RegisterScreen extends StatelessWidget {
                           }
                           return null;
                         }),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     defaultFormField(
@@ -81,7 +78,7 @@ class RegisterScreen extends StatelessWidget {
                           }
                           return null;
                         }),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     defaultFormField(
@@ -104,7 +101,7 @@ class RegisterScreen extends StatelessWidget {
                           }
                           return null;
                         }),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
@@ -116,7 +113,7 @@ class RegisterScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15)),
                         fillColor: Colors.white,
                         labelText: 'Enter your password',
-                        prefixIcon: Icon(Icons.lock),
+                        prefixIcon: const Icon(Icons.lock),
                         suffixIcon: IconButton(
                             onPressed: () {
                               cubit.changepass();
@@ -132,19 +129,19 @@ class RegisterScreen extends StatelessWidget {
                         return null;
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     TextFormField(
                         keyboardType: TextInputType.visiblePassword,
-                        controller: confirmpassController,
+                        controller: confirmPasswordController,
                         obscureText: cubit.ispassword,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15)),
                           fillColor: Colors.white,
                           labelText: 'confirm Password',
-                          prefixIcon: Icon(Icons.lock),
+                          prefixIcon: const Icon(Icons.lock),
                           suffixIcon: IconButton(
                               onPressed: () {
                                 cubit.changepass();
@@ -156,13 +153,13 @@ class RegisterScreen extends StatelessWidget {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Confirm Your Password';
-                          } else if (confirmpassController.text !=
+                          } else if (confirmPasswordController.text !=
                               passwordController.text) {
                             return 'your password isn\'t correct';
                           }
                           return null;
                         }),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     state is! LoadingUserState
@@ -173,7 +170,7 @@ class RegisterScreen extends StatelessWidget {
                             ),
                             child: MaterialButton(
                               onPressed: () async {
-                                if (formkey.currentState!.validate()) {
+                                if (formKey.currentState!.validate()) {
                                   ProjectCubit.get(context).userDataModel =
                                       UserData(
                                     name: nameController.text,
@@ -187,25 +184,25 @@ class RegisterScreen extends StatelessWidget {
                                     email: emailController.text,
                                     phone: int.parse(phoneController.text),
                                     password: passwordController.text,
-                                    confirmpassword: confirmpassController.text,
+                                    confirmpassword: confirmPasswordController.text,
                                   );
                                   cubit.saveUserData(
                                       ProjectCubit.get(context).userDataModel!);
                                   Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Tasks_App()),
+                                        builder: (context) => TasksApp()),
                                     (route) => false,
                                   );
                                 }
                               },
-                              child: Text('Register',
+                              child: const Text('Register',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 18,
                                   )),
                             ))
-                        : Center(child: CircularProgressIndicator()),
+                        : const Center(child: CircularProgressIndicator()),
                   ]),
                 ),
               ),

@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:tasks/layout/cubit/cubit.dart';
 import 'package:tasks/shared/bloc_observer.dart';
 import 'package:tasks/shared/network/local/cache_helper.dart';
-import 'package:tasks/shared/style/themes.dart';
 import 'layout/tasks_app.dart';
-import 'modules/tasks_app/login/cubit/cubit.dart';
 import 'modules/tasks_app/login/cubit/cubit.dart';
 import 'modules/tasks_app/login/login.dart';
 import 'modules/tasks_app/mara/mara_cubit/cubit.dart';
 import 'modules/tasks_app/oe/oe_cubit/cubit.dart';
-import 'modules/tasks_app/oe/oe_screen.dart';
+
 
 Future<void> main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +21,7 @@ Future<void> main()async {
 class MyApp extends StatelessWidget {
   final bool email;
 
-   MyApp({required this.email,});
+   const MyApp({super.key, required this.email,});
 
   // This widget is the root of your application.
   @override
@@ -43,7 +39,7 @@ class MyApp extends StatelessWidget {
         // theme:lightTheme ,
         // darkTheme:darkTheme,
         themeMode: ThemeMode.light ,
-        home:email?Tasks_App():NewLogin(),
+        home:email?TasksApp():NewLogin(),
       ),
     );
   }

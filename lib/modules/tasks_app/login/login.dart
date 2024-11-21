@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:tasks/modules/tasks_app/login/register.dart';
 
 import '../../../layout/tasks_app.dart';
-import '../../../models/userdata.dart';
 import '../../../shared/components/component.dart';
 import '../../../shared/network/local/cache_helper.dart';
 import 'cubit/cubit.dart';
@@ -15,12 +13,12 @@ class NewLogin extends StatelessWidget {
   NewLogin({
     Key? key,
   }) : super(key: key);
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-  var nameController = TextEditingController();
-  var phoneController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final nameController = TextEditingController();
+  final phoneController = TextEditingController();
 
-  var formkey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProjectCubit, ProjectStates>(
@@ -38,12 +36,12 @@ class NewLogin extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
                 child: Form(
-                  key: formkey,
+                  key: formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image(
+                      const Image(
                         image: AssetImage('assets/image/milano.jpg'),
                       ),
                       Text(
@@ -53,7 +51,7 @@ class NewLogin extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 22),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       defaultFormField(
@@ -77,7 +75,7 @@ class NewLogin extends StatelessWidget {
                           return null;
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       TextFormField(
@@ -89,7 +87,7 @@ class NewLogin extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15)),
                           fillColor: Colors.white,
                           labelText: 'Enter your password',
-                          prefixIcon: Icon(Icons.lock),
+                          prefixIcon: const Icon(Icons.lock),
                           suffixIcon: IconButton(
                               onPressed: () {
                                 cubit.changepass();
@@ -105,7 +103,7 @@ class NewLogin extends StatelessWidget {
                           return null;
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       state is! LoadingUserState
@@ -116,7 +114,7 @@ class NewLogin extends StatelessWidget {
                               ),
                               child: MaterialButton(
                                 onPressed: () async {
-                                  if (formkey.currentState!.validate()) {
+                                  if (formKey.currentState!.validate()) {
                                     print(emailController.text);
                                     print(passwordController.text);
 
@@ -132,23 +130,23 @@ class NewLogin extends StatelessWidget {
                                       Navigator.pushAndRemoveUntil(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => Tasks_App()),
+                                            builder: (context) => TasksApp()),
                                         (route) => false,
                                       );
                                     }
                                   }
                                 },
-                                child: Text(
+                                child: const Text(
                                   'Login',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 18),
                                 ),
                               ))
-                          : Center(child: CircularProgressIndicator()),
+                          : const Center(child: CircularProgressIndicator()),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Don\'t have an account ?',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
@@ -160,7 +158,7 @@ class NewLogin extends StatelessWidget {
                                       builder: (context) => RegisterScreen(),
                                     ));
                               },
-                              child: Text(
+                              child: const Text(
                                 'Register Now',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               )),

@@ -17,10 +17,10 @@ class TasksCubits extends Cubit<TasksStates> {
   List<Widget> Screen = [Milano_Screen(), Mara_Screen(), OE_Screen()];
   var currentIndex = 0;
   List<BottomNavigationBarItem> itemBottom = [
-    BottomNavigationBarItem(icon: Icon(Icons.business), label: 'Milano'),
-    BottomNavigationBarItem(
+    const BottomNavigationBarItem(icon: Icon(Icons.business), label: 'Milano'),
+    const BottomNavigationBarItem(
         icon: Icon(Icons.bakery_dining_outlined), label: 'Mara'),
-    BottomNavigationBarItem(icon: Icon(Icons.factory), label: 'OE'),
+    const BottomNavigationBarItem(icon: Icon(Icons.factory), label: 'OE'),
   ];
 
   void changeNavBar(index) {
@@ -30,9 +30,9 @@ class TasksCubits extends Cubit<TasksStates> {
 
   List<Map> tasks = [];
   List<Map> doneTasks = [];
-  List<Map> Flutter = [];
-  List<Map> Web = [];
-  List<Map> All = [];
+  // List<Map> Flutter = [];
+  // List<Map> Web = [];
+  // List<Map> All = [];
 
   Database? database;
   void creatDatabase() async {
@@ -51,7 +51,7 @@ class TasksCubits extends Cubit<TasksStates> {
         });
       },
       onOpen: (data) {
-        database=data;
+        database = data;
         getDataFromDatabase();
 
         print('database opened');
@@ -63,12 +63,14 @@ class TasksCubits extends Cubit<TasksStates> {
     });
   }
 
-  Future<void> upgradeDatabase(Database database, int oldVersion, int newVersion) async {
+  Future<void> upgradeDatabase(
+      Database database, int oldVersion, int newVersion) async {
     if (oldVersion < 2) {
       // Add the new column to the existing table
       await database.execute('ALTER TABLE tasks ADD COLUMN type TEXT');
     }
   }
+
   String time = '';
   String date = '';
 
@@ -92,7 +94,6 @@ class TasksCubits extends Cubit<TasksStates> {
         print('$value inserted successfully');
         emit(TasksInsertDatabaseState());
         getDataFromDatabase();
-
       }).catchError((error) {
         print('Error when inserting new row ${error.toString()}');
       });
@@ -100,41 +101,40 @@ class TasksCubits extends Cubit<TasksStates> {
     });
   }
 
-  Future <void> getDataFromDatabase() async{
+  Future<void> getDataFromDatabase() async {
     tasks = [];
     doneTasks = [];
-   await database!.rawQuery('SELECT * FROM tasks').then((value) {
+    await database!.rawQuery('SELECT * FROM tasks').then((value) {
       value.forEach((element) {
         if (element['status'] == 'new')
           tasks.add(element);
-        else if(element['status'] == 'done')
-          doneTasks.add(element);
+        else if (element['status'] == 'done') doneTasks.add(element);
       });
       print(value);
       emit(TasksGetDatabaseState());
     });
   }
-  void getTypeFromDatabase( String type) {
+
+  void getTypeFromDatabase(String type) {
     tasks = [];
     doneTasks = [];
-    database!.rawQuery('SELECT * FROM tasks WHERE type=?',[type,],).then((value) {
+    database!.rawQuery(
+      'SELECT * FROM tasks WHERE type=?',
+      [
+        type,
+      ],
+    ).then((value) {
       for (var element in value) {
-        if (element['type'] == 'Flutter'){
-          if (element['status'] == 'new'){
+        if (element['type'] == 'Flutter') {
+          if (element['status'] == 'new') {
             tasks.add(element);
-          }
-
-          else if(element['status'] == 'done') {
+          } else if (element['status'] == 'done') {
             doneTasks.add(element);
           }
-        }
-
-        else if(element['type'] == 'Web'){
-          if (element['status'] == 'new'){
+        } else if (element['type'] == 'Web') {
+          if (element['status'] == 'new') {
             tasks.add(element);
-          }
-
-          else if(element['status'] == 'done') {
+          } else if (element['status'] == 'done') {
             doneTasks.add(element);
           }
         }
@@ -152,7 +152,6 @@ class TasksCubits extends Cubit<TasksStates> {
       emit(TasksUpdateDatabaseState());
     });
   }
-
 
   void deleteData({int? id}) {
     database?.rawDelete(
@@ -198,11 +197,4 @@ class TasksCubits extends Cubit<TasksStates> {
       },
     );
   }
-
-
-
-
-
-
-
 }

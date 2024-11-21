@@ -9,7 +9,7 @@ import 'package:tasks/shared/components/component.dart';
 class AddTasks extends StatefulWidget {
   final Map? taskData;
 
-  AddTasks({Key? key, this.taskData}) : super(key: key);
+  const AddTasks({Key? key, this.taskData}) : super(key: key);
 
   @override
   State<AddTasks> createState() => _AddTasksState();
@@ -27,6 +27,7 @@ class _AddTasksState extends State<AddTasks> {
   var deadlineController = TextEditingController();
 
   String? dropdownValue;
+  @override
   void initState() {
     super.initState();
     if (widget.taskData != null) {
@@ -52,14 +53,14 @@ class _AddTasksState extends State<AddTasks> {
             backgroundColor: HexColor('#ba4c31'),
             centerTitle: true,
             leading: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back,
                   color: Colors.white,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
                 }),
-            title: Text('Add New Tasks',
+            title: const Text('Add New Tasks',
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
@@ -74,11 +75,11 @@ class _AddTasksState extends State<AddTasks> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Task Title',
                         style: TextStyle(fontSize: 20),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 7,
                       ),
                       defaultFormField(
@@ -97,10 +98,10 @@ class _AddTasksState extends State<AddTasks> {
                           return null;
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
-                      Row(
+                      const Row(
                         children: [
                           Expanded(
                               child: Text(
@@ -114,7 +115,7 @@ class _AddTasksState extends State<AddTasks> {
                           )),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       Row(
@@ -142,7 +143,7 @@ class _AddTasksState extends State<AddTasks> {
                                   });
                                 }),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 16,
                           ),
                           Expanded(
@@ -171,10 +172,10 @@ class _AddTasksState extends State<AddTasks> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
-                      Row(
+                      const Row(
                         children: [
                           Expanded(
                             child: Text(
@@ -192,7 +193,7 @@ class _AddTasksState extends State<AddTasks> {
                           )),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       Row(
@@ -226,7 +227,7 @@ class _AddTasksState extends State<AddTasks> {
                               },
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 14,
                           ),
                           Expanded(
@@ -252,7 +253,7 @@ class _AddTasksState extends State<AddTasks> {
                                   dropdownValue = newValue!;
                                 });
                               },
-                              hint: Text('Select Task Type'),
+                              hint: const Text('Select Task Type'),
                               items: <String>[
                                 'Flutter',
                                 'Web'
@@ -261,7 +262,7 @@ class _AddTasksState extends State<AddTasks> {
                                   value: value,
                                   child: Text(
                                     value,
-                                    style: TextStyle(fontSize: 20),
+                                    style: const TextStyle(fontSize: 20),
                                   ),
                                 );
                               }).toList(),
@@ -269,14 +270,14 @@ class _AddTasksState extends State<AddTasks> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
-                      Text(
+                      const Text(
                         'Note',
                         style: TextStyle(fontSize: 20),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       defaultFormField(
@@ -297,7 +298,7 @@ class _AddTasksState extends State<AddTasks> {
                           return null;
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6,
                       ),
                       Row(
@@ -323,7 +324,7 @@ class _AddTasksState extends State<AddTasks> {
                           }
 
                                     },
-                                    child: Text(
+                                    child: const Text(
                                       'Save',
                                       style: TextStyle(
                                           fontSize: 16,
